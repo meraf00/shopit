@@ -1,1 +1,1 @@
-export { BaseCrudController } from './base-crud.controller';
+export { EntityCrudController } from './entity-crud.controller';

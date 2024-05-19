@@ -1,1 +1,1 @@
-export { BaseCrudService } from './base-crud.service';
+export { EntityCrudService } from './entity-crud.service';

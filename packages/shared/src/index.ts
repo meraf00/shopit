@@ -1,2 +1,2 @@
-export { BaseCrudService } from '@services';
-export { BaseCrudController } from '@controllers';
+export { EntityCrudService } from '@services';
+export { EntityCrudController } from '@controllers';
