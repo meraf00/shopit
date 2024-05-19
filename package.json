@@ -5,17 +5,29 @@
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
-  "dependencies": {},
   "devDependencies": {
-    "prettier": "^3.2.5",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "eslint": "^8.42.0",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.0"
+    "eslint-plugin-prettier": "^5.0.0",
+    "husky": "^9.0.11",
+    "prettier": "^3.2.5"
   },
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "npm@10.2.5"
+  "packageManager": "npm@10.2.5",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint — fix",
+      "prettier — write",
+      "git add"
+    ]
+  }
 }
