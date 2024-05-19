@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { ProductModule } from './product/product.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { getMetadataArgsStorage } from 'typeorm';
 
 @Module({
   imports: [
@@ -11,19 +10,14 @@ import { getMetadataArgsStorage } from 'typeorm';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => {
-        const entities = getMetadataArgsStorage()
-          .tables.map((tbl) => tbl.target)
-          .filter((entity) =>
-            entity.toString().toLowerCase().includes('entity'),
-          );
-
         return {
           type: 'mongodb',
           url: configService.get('MONGODB_CONNECTION_STRING'),
           database: configService.get('MONGODB_DATABASE'),
-          entities: entities,
+          entities: [__dirname + '/**/*.entity{.ts}'],
           logging: true,
           autoLoadEntities: true,
+          synchronize: true,
         };
       },
     }),

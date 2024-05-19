@@ -1,9 +1,10 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ObjectIdColumn, ObjectId } from 'typeorm';
+import { BaseEntity } from '@shared/entity';
 
 @Entity({ name: 'products' })
-export class Product {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class Product extends BaseEntity {
+  @ObjectIdColumn()
+  _id: ObjectId;
 
   @Column()
   name: string;
@@ -15,11 +16,8 @@ export class Product {
   price: number;
 
   @Column()
+  imageUrl: string;
+
+  @Column()
   stock: number;
-
-  @Column()
-  createdAt: Date;
-
-  @Column()
-  updatedAt: Date;
 }
